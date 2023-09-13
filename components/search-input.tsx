@@ -4,13 +4,16 @@ import React, { ChangeEventHandler, useCallback, useEffect, useState } from 'rea
 import { Input } from './ui/input'
 import { useDebounce } from '@/hooks/use-debounce'
 import axios from "axios"
-// import useStoreProducts from '@/hooks/use-products'
+import useMovieStore from '@/hooks/use-movie-store'
+import { requests } from '@/lib/utils'
+
 
 
 const SearchInput = () => {
   const [value, setValue] = useState("");
   const debounceValue = useDebounce<string>(value, 500)
-  // const addProduct = useStoreProducts();
+  const addmovies = useMovieStore((state) => state.updateMovies);
+
 
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -18,28 +21,44 @@ const SearchInput = () => {
   }
 
 
-  // const searchProduct = useCallback(async () => {
-  //   const response = await axios.get(`https://dummyjson.com/products/search?q=${debounceValue}`);
-  //   addProduct.addItem(response.data["products"]);
-  //   return;
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [debounceValue])
+  const searchProduct = useCallback(async () => {
+    const options = {
+      method: 'GET',
+      url: 'https://api.themoviedb.org/3/search/movie',
+      params: { query: debounceValue, include_adult: 'false', language: 'en-US', page: '1' },
+      headers: {
+        accept: 'application/json',
+        Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN
+      }
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        addmovies(response.data.results);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounceValue])
 
 
-  // useEffect(() => {
-  //   searchProduct();
+  useEffect(() => {
+    searchProduct();
 
-  // }, [searchProduct]);
+  }, [searchProduct]);
 
 
   return (
 
-    <div className=' relative w-1/3'>
+    <div className=' relative w-1/3 bg-transparent '>
       <Search className='absolute h-4 w-4 top-2 right-4 text-muted-foreground' />
       <Input
         onChange={onChange}
         value={value}
-        placeholder='What do you want to search?...' className='pl-2 w-full h-8' />
+        placeholder='Search...' className='pl-2 w-full h-8 bg-transparent' />
     </div>
 
 

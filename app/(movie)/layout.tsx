@@ -1,15 +1,15 @@
+import Sidebar from "@/components/sidebar";
 import React from "react";
 
 const MovieLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className=" h-full">
-            <div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
-                movie sidebar
+        <div className="h-full relative">
+            <div className="hidden h-full md:flex md:flex-col md:w-[226px] md:fixed md:inset-y-0  bg-white">
+                <Sidebar />
             </div>
-            <main className=" md:pl-[72px] h-full">
+            <main className=" md:pl-60 md:pr-4">
                 {children}
             </main>
-
         </div>
     )
 };
