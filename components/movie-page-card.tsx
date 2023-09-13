@@ -1,13 +1,15 @@
 "use client"
 
 import ReactPlayer from "react-player";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Element, Genre, Movie, MovieDetails } from "@/typings";
+import { Card, CardContent, } from "./ui/card";
+import { Movie, MovieDetails } from "@/typings";
 import { useState, useEffect } from "react"
-import { ArrowDown, Book, Dot, List, Star } from "lucide-react";
+import { Book, Dot, List, Menu, Star } from "lucide-react";
 import { Button } from "./ui/button";
-import useMovieStore from "@/hooks/use-movie-store";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { ActionTooltip } from "./action-tooltip";
 
 interface MoviePageCardProps {
     movie: MovieDetails
@@ -17,6 +19,7 @@ interface MoviePageCardProps {
 const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
     const [trailer, setTrailer] = useState("");
 
+    const router = useRouter();
 
     useEffect(() => {
         if (movie?.videos) {
@@ -45,14 +48,10 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
 
     const time = minutesToHoursAndMinutes(movie.runtime);
 
-    const imagePath1 = movies[0].backdrop_path || movies[0].poster_path;
-    const imagePath2 = movies[1].backdrop_path || movies[1].poster_path;
-    const imagePath3 = movies[2].backdrop_path || movies[2].poster_path;
-
 
 
     return (
-        <Card className="w-full mt-0">
+        <Card className="w-full mt-0 border-none shadow-none">
             <CardContent className=" flex flex-col ">
                 <div className="mt-5 w-full h-96 items-center justify-center">
                     <ReactPlayer
@@ -76,11 +75,14 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
                 <div className="flex items-center justify-between">
                     <p className=" text-xs mr-4 pr-4 w-1/2">{movie.overview} </p>
                     <div className="ml-auto flex flex-col items-center gap-3 justify-center w-2/4">
-                        <Button className=" text-center w-full bg-pink-600 "><Book className=" w-4 h-4 mr-2" /> See Showtimes </Button>
-                        <Button className=" text-center w-full bg-gray-300 text-black "><List className=" w-4 h-4 mr-2 " /> Watch More </Button>
+                        <ActionTooltip side="top" align="center" label={time}>
+                            <Button className=" text-center w-full bg-pink-600 "><Book className=" w-4 h-4 mr-2" /> See Showtimes </Button>
+                        </ActionTooltip>
+
+                        <Button onClick={() => router.push('/')} className=" text-center w-full bg-gray-300 text-black "><List className=" w-4 h-4 mr-2 " /> Watch More </Button>
                     </div>
                 </div>
-                <div className="flex  justify-center md:justify-between flex-col lg:flex-row w-full mt-4">
+                <div className="flex  justify-center md:justify-between flex-col lg:flex-row w-full mt-4 ">
                     <div className=" flex flex-col text-start  w-full">
                         <div className=" flex flex-col gap-4">
                             <p>Director: <span className=" text-red-500">{movie.belongs_to_collection?.name} </span></p>
@@ -98,7 +100,7 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
                     </div>
                     {
                         movies && movies.filter((data, idx) => idx < 3).map((mmovie) => (
-                            <div key={mmovie.id} className=" flex flex-col md:flex-row items-center justify-center ">
+                            <div key={mmovie.id} className=" flex flex-col md:flex-row items-center justify-center  ">
 
                                 <div className=" mt-3 flex ">
                                     <div className="w-[150px] h-[229px] relative">
@@ -106,9 +108,11 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
                                     </div>
                                 </div>
 
+
                             </div>
                         ))
                     }
+
 
 
 
@@ -123,4 +127,4 @@ export default MoviePageCard;
 
 
 {/* <Image alt="iiei" fill className="w-[23px] h-[23px] left-[16px] top-[198px] absolute shadow" src={`https://image.tmdb.org/t/p/w500${imagePath2}`} />
-                            <div className=" text-black left-[51px] top-[199px] absolute  text-sm font-medium font-['Poppins']">The Best Movies and Shows in September</div> */}
+                             */}

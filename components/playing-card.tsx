@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const PlayingCard = () => {
     return (
-        <Card className="w-full rounded-2xl p-2">
+        <Card className="w-full rounded-2xl p-1">
             <CardHeader>
                 <CardTitle>
                     Play movie quize and earn free tickets
@@ -14,7 +14,7 @@ const PlayingCard = () => {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <Button variant="redline">
+                <Button variant="redline" className=" text-red-600  bg-pink-200 rounded-full">
                     Start Playing
                 </Button>
             </CardContent>

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { baseUrl } from "@/constant/movie"
 import { Box, Film, Play, PlayCircle } from "lucide-react"
 import { Button } from "./ui/button"
+import { useRouter } from "next/navigation"
 
 
 
@@ -13,12 +14,16 @@ interface Props {
 }
 const Banner = ({ allMovies }: Props) => {
     const [movie, setMovie] = useState<Movie | null>(null);
-    // const [showModel, setShowModal] = useRecoilState(modalState);
-    // const [showmovie, setShowMovie] = useRecoilState(movieState);
+    const router = useRouter();
+
 
     useEffect(() => {
         setMovie(allMovies[Math.floor(Math.random() * allMovies.length)])
     }, [allMovies])
+
+    const onClick = () => {
+        return router.push(`/movies/${movie?.id}`)
+    }
 
     return (
         <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
@@ -51,10 +56,9 @@ const Banner = ({ allMovies }: Props) => {
                 <p className="max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
                     {movie?.overview}
                 </p>
-                <div className="flex space-x-2">
-                    <Button variant='redline' className=" w-56 mt-2" ><PlayCircle className=" w-4 h-4 text-white md:w-7 md:h-7 mr-4" />WATCH TRAILER
+                <div className="flex space-x-2" onClick={onClick}>
+                    <Button onClick={onClick} variant='redline' className=" w-56 mt-2" ><PlayCircle className=" w-4 h-4 text-white md:w-7 md:h-7 mr-4" />WATCH TRAILER
                     </Button>
-
                 </div>
             </div>
 
