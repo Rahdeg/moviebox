@@ -1,20 +1,29 @@
 "use client"
 import useMovieStore from "@/hooks/use-movie-store";
+import { cn } from "@/lib/utils";
 import { Movie } from "@/typings";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useState } from "react";
 
 interface MovieCardProps {
     movie: Movie
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
+    const [clicked, setClicked] = useState(false);
+
 
     const router = useRouter();
 
     const handleClick = () => {
         router.push(`/movies/${movie.id}`);
+    }
+
+    const onAction = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        setClicked(!clicked)
     }
 
 
@@ -35,8 +44,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
                 </div>
                 <div className="w-[218px] h-[29.21px] pl-[188px] left-[16px] top-[15.58px] absolute justify-end items-center inline-flex">
                     <div className="w-[30px] h-[29.21px] relative">
-                        <div className="w-[30px] h-[29.21px] left-0 top-0 absolute bg-gray-100 bg-opacity-50 rounded-full backdrop-blur-[2px]" />
-                        <div className="w-5 h-[19.47px] left-[5px] top-[4.87px] absolute" />
+                        <div onClick={onAction} className={cn("w-[30px] h-[29.21px] flex items-center justify-center left-0 top-0 absolute text-gray-100  ", clicked && "text-red-900  backdrop-blur-none")} >
+                            <Heart className={cn("", clicked && "fill-red-900")} />
+                        </div>
+
                     </div>
                 </div>
             </div>
