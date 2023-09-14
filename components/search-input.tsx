@@ -42,7 +42,7 @@ const SearchInput = () => {
         addmovies(response.data.results);
       })
       .catch(function (error) {
-        toast.error(error.message);
+        toast.error(error.message || "Something went wrong");
       });
     setLoading(false);
     return;
