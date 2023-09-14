@@ -6,6 +6,7 @@ import { useDebounce } from '@/hooks/use-debounce'
 import axios from "axios"
 import useMovieStore from '@/hooks/use-movie-store'
 import { requests } from '@/lib/utils'
+import toast from 'react-hot-toast'
 
 
 
@@ -38,7 +39,7 @@ const SearchInput = () => {
         addmovies(response.data.results);
       })
       .catch(function (error) {
-        console.error(error);
+        toast.error(error.message);
       });
     return;
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -11,7 +11,6 @@ const MoviePage = async ({ params }: { params: { movieId: string } }) => {
 
     return (
         <div className=" text-black">
-            <MobileSidebar />
             <MoviePageCard movie={movie} movies={allMovies.results} />
         </div>
     );

@@ -65,7 +65,7 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
 
                 <div className=" flex items-center justify-between ">
                     <div className=" flex items-center py-2 ">
-                        <p>{movie.title} <Dot className=" inline" /> <span>{day} <Dot className=" inline" /></span> <span>{movie.adult ? "PG-18" : "PG-13"} <Dot className=" inline" /></span> <span>{time}</span> </p>
+                        <p data-testid="movie-title">{movie.title} <Dot className=" inline" /> <span data-testid="movie-release-date">{day} <Dot className=" inline" /></span> <span>{movie.adult ? "PG-18" : "PG-13"} <Dot className=" inline" /></span> <span data-testid="movie-runtime">{time}</span> </p>
 
                         <p className="ml-3 text-pink-600">{movie.genres[0].name} <span className=" ml-2"> {movie.genres[1].name}</span></p>
                     </div>
@@ -73,13 +73,13 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
                     </div>
                 </div>
                 <div className="flex items-center justify-between">
-                    <p className=" text-xs mr-4 pr-4 w-1/2">{movie.overview} </p>
+                    <p data-testid="movie-overview" className=" text-xs mr-4 pr-4 w-1/2">{movie.overview} </p>
                     <div className="ml-auto flex flex-col items-center gap-3 justify-center w-2/4">
                         <ActionTooltip side="top" align="center" label={time}>
-                            <Button className=" text-center w-full bg-pink-600 "><Book className=" w-4 h-4 mr-2" /> See Showtimes </Button>
+                            <Button className=" text-center w-full lg:w-1/2 bg-pink-600 "><Book className=" w-4 h-4 mr-2" /> See Showtimes </Button>
                         </ActionTooltip>
 
-                        <Button onClick={() => router.push('/')} className=" text-center w-full bg-gray-300 text-black "><List className=" w-4 h-4 mr-2 " /> Watch More </Button>
+                        <Button onClick={() => router.push('/')} className=" text-center w-full lg:w-1/2 bg-gray-300 text-black "><List className=" w-4 h-4 mr-2 " /> Watch More </Button>
                     </div>
                 </div>
                 <div className="flex  justify-center md:justify-between flex-col lg:flex-row w-full mt-4 ">
@@ -126,5 +126,3 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
 export default MoviePageCard;
 
 
-{/* <Image alt="iiei" fill className="w-[23px] h-[23px] left-[16px] top-[198px] absolute shadow" src={`https://image.tmdb.org/t/p/w500${imagePath2}`} />
-                             */}

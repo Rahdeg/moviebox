@@ -26,7 +26,7 @@ const routes = [
     {
         label: "Movies",
         icon: FilmIcon,
-        href: "/movies/3",
+        href: "/movies",
         color: "text-gray-400"
     },
     {

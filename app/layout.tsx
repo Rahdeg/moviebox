@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import ToastProvider from '@/provider/toast-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
       <body className={cn("bg-white text-white", inter.className)} suppressHydrationWarning>
+        <ToastProvider />
         {children}
       </body>
     </html>

@@ -1,9 +1,10 @@
 "use client"
 import { Movie } from "@/typings";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NoResults from "./no-result";
 import MovieCard from "./movie-card";
 import useMovieStore from "@/hooks/use-movie-store";
+import useFavorite from "@/hooks/use-favorite";
 
 
 interface MovieListProps {
@@ -13,13 +14,16 @@ interface MovieListProps {
 const MovieList = ({ data }: MovieListProps) => {
 
 
+
     const addmovies = useMovieStore((state) => state.updateMovies);
 
     useEffect(() => {
-        addmovies(data)
+        return addmovies(data)
     }, [addmovies, data,]);
 
     const movie = useMovieStore((state) => state.movies);
+
+
 
 
 
