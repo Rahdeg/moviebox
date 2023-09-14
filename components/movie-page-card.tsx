@@ -53,7 +53,7 @@ const MoviePageCard = ({ movie, movies }: MoviePageCardProps) => {
     return (
         <Card className="w-full mt-0 border-none shadow-none">
             <CardContent className=" flex flex-col ">
-                <div className="mt-5 w-full h-96 items-center justify-center">
+                <div className="w-full h-96 mt-16 items-center justify-center">
                     <ReactPlayer
                         url={`https://www.youtube.com/watch?v=${trailer}`}
                         width="100%"
