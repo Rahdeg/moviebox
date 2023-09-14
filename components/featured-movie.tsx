@@ -5,6 +5,8 @@ import { Movie } from "@/typings";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react"
 import { useRouter } from "next/navigation";
+import { useLoading } from "@/hooks/use-loading";
+import Loader from "./loader";
 
 
 interface FeaturedMovieProps {
@@ -14,6 +16,8 @@ interface FeaturedMovieProps {
 const FeaturedMovie = ({ allMovies }: FeaturedMovieProps) => {
 
     const router = useRouter();
+
+    const { isLoading } = useLoading();
 
 
     const updateMovie = useMovieStore((state) => state.updateMovies);
@@ -31,7 +35,10 @@ const FeaturedMovie = ({ allMovies }: FeaturedMovieProps) => {
                 <p className=" text-2xl font-bold" >Featured Movie</p>
                 <p onClick={() => router.push('/movies')} className="flex items-center justify-center pr-12 text-red-700 cursor-pointer">view more <ArrowRight className="w-4 h-4 ml-2" /></p>
             </div>
-            <MovieList data={allMovies} />
+            {
+                isLoading ? (<Loader />) : (<MovieList data={allMovies} />)
+            }
+
         </div>
     );
 };

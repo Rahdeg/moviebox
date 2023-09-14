@@ -5,15 +5,17 @@ import { Input } from './ui/input'
 import { useDebounce } from '@/hooks/use-debounce'
 import axios from "axios"
 import useMovieStore from '@/hooks/use-movie-store'
-import { requests } from '@/lib/utils'
 import toast from 'react-hot-toast'
-
+import { useLoadingStore } from '@/hooks/use-loading'
 
 
 const SearchInput = () => {
   const [value, setValue] = useState("");
   const debounceValue = useDebounce<string>(value, 500)
   const addmovies = useMovieStore((state) => state.updateMovies);
+
+
+  const { setLoading } = useLoadingStore();
 
 
 
@@ -23,6 +25,7 @@ const SearchInput = () => {
 
 
   const searchProduct = useCallback(async () => {
+    setLoading(true);
     const options = {
       method: 'GET',
       url: 'https://api.themoviedb.org/3/search/movie',
@@ -41,6 +44,7 @@ const SearchInput = () => {
       .catch(function (error) {
         toast.error(error.message);
       });
+    setLoading(false);
     return;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounceValue])

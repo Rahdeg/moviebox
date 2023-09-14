@@ -1,7 +1,10 @@
+
 import getMovies from '@/actions/get-movies'
 import Banner from '@/components/banner'
 import FeaturedMovie from '@/components/featured-movie';
 import Header from '@/components/header'
+import { RollerCoaster } from 'lucide-react';
+import { useState } from 'react';
 
 
 export default async function Home() {
@@ -10,9 +13,9 @@ export default async function Home() {
 
 
 
+
   return (
     <div className=" relative h-screen bg-transparent  lg:h-[140vh]">
-
 
       <Header />
       <main className='relative px-4 md:pr-8 pb-24 lg:space-y-24 lg:pl-16'>
@@ -20,10 +23,9 @@ export default async function Home() {
         <Banner allMovies={allMovies.results} />
       </main>
       <section className=' '>
-        {/*Row*/}
+
         <FeaturedMovie allMovies={allMovies.results} />
       </section>
-      {/* {showModel && <Modal/>} */}
     </div>
   )
 }

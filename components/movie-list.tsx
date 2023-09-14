@@ -24,11 +24,6 @@ const MovieList = ({ data }: MovieListProps) => {
     const movie = useMovieStore((state) => state.movies);
 
 
-
-
-
-
-
     return (
         <div className=" flex items-center justify-center">
             {
