@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Code, Settings, HomeIcon, FilmIcon, Tv, Calendar, LogOut } from "lucide-react"
+import { HomeIcon, FilmIcon, Tv, Calendar, LogOut } from "lucide-react"
 import { Montserrat } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"

@@ -1,4 +1,3 @@
-import MobileSidebar from "@/components/mobile-sidebar";
 import MovieHeader from "@/components/movie-header";
 import Sidebar from "@/components/sidebar";
 import React from "react";

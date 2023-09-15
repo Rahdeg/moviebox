@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Movie } from "../typings"
 import { useState, useEffect } from 'react'
 import { baseUrl } from "@/constant/movie"
-import { Box, Film, Play, PlayCircle } from "lucide-react"
+import { PlayCircle } from "lucide-react"
 import { Button } from "./ui/button"
 import { useRouter } from "next/navigation"
 
