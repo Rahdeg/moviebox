@@ -32,7 +32,7 @@ const MovieList = ({ data }: MovieListProps) => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:w-full xl:ml-6">
                         {
-                            data.filter((dat, idx) => idx > 11).map((item) => (
+                            data.filter((dat, idx) => idx >= 9).map((item) => (
                                 <MovieCard movie={item} key={item.id} />
                             ))
                         }
@@ -40,7 +40,7 @@ const MovieList = ({ data }: MovieListProps) => {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:w-full xl:ml-6">
                         {
-                            movie.filter((dat, idx) => idx > 11).map((item) => (
+                            movie.filter((dat, idx) => idx >= 9).map((item) => (
                                 <MovieCard movie={item} key={item.id} />
                             ))
                         }
