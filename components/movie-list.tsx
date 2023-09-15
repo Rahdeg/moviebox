@@ -5,6 +5,8 @@ import NoResults from "./no-result";
 import MovieCard from "./movie-card";
 import useMovieStore from "@/hooks/use-movie-store";
 import useFavorite from "@/hooks/use-favorite";
+import { useLoadingStore } from "@/hooks/use-loading";
+import Loader from "./loader";
 
 
 interface MovieListProps {
@@ -13,7 +15,7 @@ interface MovieListProps {
 
 const MovieList = ({ data }: MovieListProps) => {
 
-
+    const { isLoading } = useLoadingStore();
 
     const addmovies = useMovieStore((state) => state.updateMovies);
 
@@ -26,6 +28,7 @@ const MovieList = ({ data }: MovieListProps) => {
 
     return (
         <div className=" flex items-center justify-center">
+            {isLoading && <Loader />}
             {
                 movie.length === 0 ? (
 

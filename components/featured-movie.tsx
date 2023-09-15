@@ -5,8 +5,9 @@ import { Movie } from "@/typings";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react"
 import { useRouter } from "next/navigation";
-import { useLoading } from "@/hooks/use-loading";
+
 import Loader from "./loader";
+import { useLoadingStore } from "@/hooks/use-loading";
 
 
 interface FeaturedMovieProps {
@@ -17,7 +18,7 @@ const FeaturedMovie = ({ allMovies }: FeaturedMovieProps) => {
 
     const router = useRouter();
 
-    const { isLoading } = useLoading();
+    const { isLoading } = useLoadingStore()
 
 
     const updateMovie = useMovieStore((state) => state.updateMovies);

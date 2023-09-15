@@ -1,4 +1,3 @@
-import { useLoading } from "@/hooks/use-loading";
 import { MovieDetailsResponse } from "@/typings";
 
 
