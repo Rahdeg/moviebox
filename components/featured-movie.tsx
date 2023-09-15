@@ -32,7 +32,7 @@ const FeaturedMovie = ({ allMovies }: FeaturedMovieProps) => {
 
     return (
         <div className="flex flex-col bg-white   ">
-            <div className=" justify-between items-center flex text-black p-5 mt-4">
+            <div className=" justify-between items-center flex text-black px-5">
                 <p className=" text-2xl font-bold" >Featured Movie</p>
                 <p onClick={() => router.push('/movies')} className="flex items-center justify-center pr-12 text-red-700 cursor-pointer">view more <ArrowRight className="w-4 h-4 ml-2" /></p>
             </div>
